@@ -11,22 +11,30 @@
                 <a href="{{route('admin.categories.create')}}"
                 class="px-2 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">New Category</a>
             </div>
+            <div>
+                 @if (session('message'))
+                    <div class="alert bg-green-200 p-3 my-2 rounded">
+                        {{session('message')}}
+                    </div>
+                @endif
+            </div>
+
             {{-- table --}}
             <div class="relative overflow-x-auto">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Product name
+                                ID
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Color
+                                Name
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Category
+                                Image
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Price
+                                Description
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Action
@@ -34,51 +42,35 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach ($categories as $category)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Apple MacBook Pro 17"
+                                {{$category->id}}
                             </th>
                             <td class="px-6 py-4">
-                                Silver
+                                {{$category->name}}
                             </td>
                             <td class="px-6 py-4">
-                                Laptop
+                                <img src="{{ Storage::url($category->image) }}" class="w-20 h-20 rounded-lg" />                                
                             </td>
                             <td class="px-6 py-4">
-                                $2999
+                                {{$category->description}}
                             </td>
                             <td class="px-6 py-4">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <div class="flex space-x-2">
+                                    <a href="{{ route('admin.categories.edit', $category->id) }}"
+                                        class="bg-green-500 hover:bg-green-700 text-white px-3 py-2 mr-2 rounded">Edit</a>
+                                    <form action="{{route('admin.categories.destroy', $category->id)}}" method="post"
+                                        class="px-3 py-2 text-white bg-red-500 hover:bg-red-700 rounded" onsubmit="return confirm('Are you sure?')">
+                                        @csrf
+                                        @method("DELETE")
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                </div>
                             </td>
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Microsoft Surface Pro
-                            </th>
-                            <td class="px-6 py-4">
-                                White
-                            </td>
-                            <td class="px-6 py-4">
-                                Laptop PC
-                            </td>
-                            <td class="px-6 py-4">
-                                $1999
-                            </td>
-                        </tr>
-                        <tr class="bg-white dark:bg-gray-800">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Magic Mouse 2
-                            </th>
-                            <td class="px-6 py-4">
-                                Black
-                            </td>
-                            <td class="px-6 py-4">
-                                Accessories
-                            </td>
-                            <td class="px-6 py-4">
-                                $99
-                            </td>
-                        </tr>
+                            
+                        </tr>                        
+                    @endforeach                        
                     </tbody>
                 </table>
             </div>
