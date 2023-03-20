@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReservationStoreRequest;
 use App\Models\Reservation;
+use App\Models\Table;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -26,7 +29,8 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        return view('admin.reservations.create');
+        $tables= Table::all();
+        return view('admin.reservations.create', compact('tables'));
     }
 
     /**
@@ -35,9 +39,10 @@ class ReservationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReservationStoreRequest $req)
     {
-        //
+        Reservation::create($req->validated());
+        return redirect()->route('admin.reservations.index')->with('message', 'New reservation Added!');
     }
 
     /**

@@ -11,22 +11,35 @@
                 <a href="{{route('admin.reservations.create')}}"
                 class="px-2 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">New Reservation</a>
             </div>
+            <div>
+                 @if (session('message'))
+                    <div class="alert bg-green-200 p-3 my-2 rounded">
+                        {{session('message')}}
+                    </div>
+                @endif
+            </div>
              {{-- table --}}
             <div class="relative overflow-x-auto">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Product name
+                                Name
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Color
+                                Email
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Category
+                                Phone Number
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Price
+                                Reserved Date
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Table
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Guest Number
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Action
@@ -34,51 +47,33 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach ($reservations as $reservation)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Apple MacBook Pro 17"
+                                {{$reservation->first_name}} {{$reservation->last_name}}
                             </th>
                             <td class="px-6 py-4">
-                                Silver
+                                {{$reservation->email}}
                             </td>
                             <td class="px-6 py-4">
-                                Laptop
+                                {{$reservation->phone_number}}
                             </td>
                             <td class="px-6 py-4">
-                                $2999
+                                {{$reservation->res_date}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{$reservation->table->name}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{$reservation->guest_number}}
                             </td>
                             <td class="px-6 py-4">
                                 <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                             </td>
                         </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Microsoft Surface Pro
-                            </th>
-                            <td class="px-6 py-4">
-                                White
-                            </td>
-                            <td class="px-6 py-4">
-                                Laptop PC
-                            </td>
-                            <td class="px-6 py-4">
-                                $1999
-                            </td>
-                        </tr>
-                        <tr class="bg-white dark:bg-gray-800">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Magic Mouse 2
-                            </th>
-                            <td class="px-6 py-4">
-                                Black
-                            </td>
-                            <td class="px-6 py-4">
-                                Accessories
-                            </td>
-                            <td class="px-6 py-4">
-                                $99
-                            </td>
-                        </tr>
+                        
+                    @endforeach
+                        
                     </tbody>
                 </table>
             </div>
