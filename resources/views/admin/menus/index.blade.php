@@ -26,6 +26,10 @@
                             </th>
                             <th scope="col"
                                 class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                Description
+                            </th>
+                            <th scope="col"
+                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                                 Price
                             </th>
                             <th scope="col" class="relative py-3 px-6">
@@ -34,7 +38,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($menus as $menu)
+                        @foreach ($menus as $menu)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td
                                     class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -43,6 +47,10 @@
                                 <td
                                     class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     <img src="{{ Storage::url($menu->image) }}" class="w-16 h-16 rounded">
+                                </td>
+                                <td
+                                    class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $menu->description }}
                                 </td>
                                 <td
                                     class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -65,7 +73,7 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>
