@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TableStoreRequest;
 use App\Models\Table;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class TableController extends Controller
      */
     public function index()
     {
-        $tables= Table::all();
+        $tables = Table::all();
         return view('admin.tables.index', compact('tables'));
     }
 
@@ -35,31 +36,21 @@ class TableController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TableStoreRequest $req)
     {
-        //
+        Table::create([
+            "name" => $req->name,
+            "location" => $req->location,
+            "status" => $req->status,
+            "guest_number" => $req->guest_number,
+        ]);
+        return redirect()->route('admin.tables.index')->with('message', 'New table Added!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    
+    public function edit(Table $table)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return view('admin.tables.edit', compact('table'));
     }
 
     /**
@@ -69,9 +60,21 @@ class TableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $req, Table $table)
     {
-        //
+        $req->validate([
+            'name' => ['required'],
+            'guest_number' => ['required'],
+            'location' => ['required'],
+            'status' => ['required'],
+        ]);
+        $table->update([
+            "name"=> $req->name,
+            "guest_number"=> $req->guest_number,
+            "location"=> $req->location,
+            "status"=> $req->status,
+        ]);
+        return redirect()->route('admin.tables.index')->with('message', 'Table successfully updated!');
     }
 
     /**
@@ -80,8 +83,9 @@ class TableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Table $table)
     {
-        //
+        $table->delete();
+        return back()->with('message', 'Table successfully deleted!');
     }
 }

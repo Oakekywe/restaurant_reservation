@@ -11,6 +11,13 @@
                 <a href="{{route('admin.menus.create')}}"
                 class="px-2 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">New Menu</a>
             </div>
+            <div>
+                 @if (session('message'))
+                    <div class="alert bg-green-200 p-3 my-2 rounded">
+                        {{session('message')}}
+                    </div>
+                @endif
+            </div>
              {{-- table --}}
             <div class="relative overflow-x-auto">
                 <table class="min-w-full">
