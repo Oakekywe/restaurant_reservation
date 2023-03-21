@@ -11,13 +11,6 @@
                 <a href="{{route('admin.reservations.create')}}"
                 class="px-2 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">New Reservation</a>
             </div>
-            <div>
-                 @if (session('message'))
-                    <div class="alert bg-green-200 p-3 my-2 rounded">
-                        {{session('message')}}
-                    </div>
-                @endif
-            </div>
              {{-- table --}}
             <div class="relative overflow-x-auto">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

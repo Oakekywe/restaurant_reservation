@@ -64,6 +64,28 @@
                     </nav>
             </div>
             <main class="m-2 p-8 w-full">
+            {{-- flash message --}}
+            <div>
+                 @if (session('success'))
+                    <div class="alert bg-green-200 p-3 my-2 rounded">
+                        {{session('success')}}
+                    </div>
+                @endif
+            </div>
+            <div>
+                 @if (session('warning'))
+                    <div class="alert bg-yellow-200 p-3 my-2 rounded">
+                        {{session('warning')}}
+                    </div>
+                @endif
+            </div>
+            <div>
+                 @if (session('danger'))
+                    <div class="alert bg-red-200 p-3 my-2 rounded">
+                        {{session('danger')}}
+                    </div>
+                @endif
+            </div>
                 {{$slot}}
             </main>
         </div>

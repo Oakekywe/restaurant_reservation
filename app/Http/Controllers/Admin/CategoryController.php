@@ -45,7 +45,7 @@ class CategoryController extends Controller
             "description"=> $req->description,
             "image"=> $image,
         ]);
-        return redirect()->route('admin.categories.index')->with('message', 'New Category Added!');
+        return redirect()->route('admin.categories.index')->with('success', 'New Category Added!');
     }
 
     /**
@@ -93,7 +93,7 @@ class CategoryController extends Controller
             "description"=> $req->description,
             "image"=> $image,
         ]);
-        return redirect()->route('admin.categories.index')->with('message', 'Category successfully updated!');
+        return redirect()->route('admin.categories.index')->with('success', 'Category successfully updated!');
     }
 
     /**
@@ -107,6 +107,6 @@ class CategoryController extends Controller
         Storage::delete($category->image);
         $category->menus()->detach();
         $category->delete();
-        return back()->with('message', 'Category successfully deleted!');
+        return back()->with('danger', 'Category successfully deleted!');
     }
 }

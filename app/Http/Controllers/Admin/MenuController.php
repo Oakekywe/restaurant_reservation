@@ -54,7 +54,7 @@ class MenuController extends Controller
             $menu->categories()->attach($req->categories);
         }
 
-        return redirect()->route('admin.menus.index')->with('message', 'New Menu Added!');
+        return redirect()->route('admin.menus.index')->with('success', 'New Menu Added!');
     }
 
     /**
@@ -110,7 +110,7 @@ class MenuController extends Controller
         if ($req->has('categories')) {
             $menu->categories()->sync($req->categories);
         }
-        return redirect()->route('admin.menus.index')->with('message', 'Menu successfully updated!');
+        return redirect()->route('admin.menus.index')->with('success', 'Menu successfully updated!');
     }
 
     /**
@@ -124,6 +124,6 @@ class MenuController extends Controller
         Storage::delete($menu->image);
         $menu->categories()->detach();
         $menu->delete();
-        return back()->with('message', 'Menu successfully deleted!');
+        return back()->with('danger', 'Menu successfully deleted!');
     }
 }

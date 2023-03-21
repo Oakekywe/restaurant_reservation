@@ -44,7 +44,7 @@ class TableController extends Controller
             "status" => $req->status,
             "guest_number" => $req->guest_number,
         ]);
-        return redirect()->route('admin.tables.index')->with('message', 'New table Added!');
+        return redirect()->route('admin.tables.index')->with('success', 'New table Added!');
     }
 
     
@@ -74,7 +74,7 @@ class TableController extends Controller
             "location"=> $req->location,
             "status"=> $req->status,
         ]);
-        return redirect()->route('admin.tables.index')->with('message', 'Table successfully updated!');
+        return redirect()->route('admin.tables.index')->with('success', 'Table successfully updated!');
     }
 
     /**
@@ -86,6 +86,6 @@ class TableController extends Controller
     public function destroy(Table $table)
     {
         $table->delete();
-        return back()->with('message', 'Table successfully deleted!');
+        return back()->with('danger', 'Table successfully deleted!');
     }
 }
