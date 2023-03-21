@@ -85,6 +85,8 @@ class TableController extends Controller
      */
     public function destroy(Table $table)
     {
+        //when table deleted, all reservations linked this table also delete
+        $table->reservations()->delete();
         $table->delete();
         return back()->with('danger', 'Table successfully deleted!');
     }

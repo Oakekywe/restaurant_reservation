@@ -55,7 +55,9 @@
                                 {{$reservation->res_date}}
                             </td>
                             <td class="px-6 py-4">
-                                {{$reservation->table->name}}
+                                @if ($reservation->table)                                
+                                    {{$reservation->table->name}}
+                                @endif
                             </td>
                             <td class="px-6 py-4">
                                 {{$reservation->guest_number}}
