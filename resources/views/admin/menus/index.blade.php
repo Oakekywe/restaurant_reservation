@@ -32,8 +32,8 @@
                                 class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                                 Price
                             </th>
-                            <th scope="col" class="relative py-3 px-6">
-                                <span class="sr-only">Edit</span>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                Action
                             </th>
                         </tr>
                     </thead>

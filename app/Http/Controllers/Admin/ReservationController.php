@@ -60,26 +60,11 @@ class ReservationController extends Controller
         return redirect()->route('admin.reservations.index')->with('success', 'New reservation Added!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    
+    public function edit(Reservation $reservation)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $tables = Table::where('status', TableStatusEnum::Available)->get();
+        return view('admin.reservations.edit', compact('reservation', 'tables'));
     }
 
     /**
@@ -89,9 +74,25 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ReservationStoreRequest $req, Reservation $reservation)
     {
-        //
+        //user input guest number validate with table guest number
+        $table = Table::findOrFail($req->table_id);
+        if ($req->guest_number > $table->guest_number) {
+            return back()->with('warning', 'Please choose the table base on guests.');
+        }
+        //user input date validate for reserved.
+        $request_date = Carbon::parse($req->res_date);
+        //table issue
+        $reservations= $table->reservations()->where('id', '!=', $reservation->id)->get();
+
+        foreach ($reservations as $res) {
+            if ($res->res_date->format('Y-m-d') == $request_date->format('Y-m-d')) {
+                return back()->with('warning', 'This table is reserved for this date. Choose another one.');
+            }
+        }
+        $reservation->update($req->validated());
+        return redirect()->route('admin.reservations.index')->with('success', 'Reservation successfully Updated!');
     }
 
     /**
@@ -100,8 +101,9 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Reservation $reservation)
     {
-        //
+        $reservation->delete();
+        return back()->with('danger', 'Reservation successfully deleted!');
     }
 }
