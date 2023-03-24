@@ -30,7 +30,7 @@ class TimeBetween implements Rule
         $pickupTime= Carbon::createFromTime($pickupDate->hour, $pickupDate->minute, $pickupDate->second);
         //restaurat open time
         $earliestTime= Carbon::createFromTimeString('13:00:00');
-        $lastTime= Carbon::createFromTimeString('20:00:00');
+        $lastTime= Carbon::createFromTimeString('21:00:00');
 
         return $pickupTime->between($earliestTime, $lastTime) ? true : false;
     }
