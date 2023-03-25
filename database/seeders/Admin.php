@@ -20,7 +20,7 @@ class Admin extends Seeder
             'name'=> 'Admin',
             'email'=> 'admin@gmail.com',
             'email_verified_at' => now(),
-            'password' => '$2y$10$V/VhVDy59mZ9aKMb0Zt4nuzlxEaMOloMdu0LAbVsDkOxpfB7IgIHe', // password
+            'password' => '$2y$10$V/VhVDy59mZ9aKMb0Zt4nuzlxEaMOloMdu0LAbVsDkOxpfB7IgIHe', // qwer1234
             'remember_token' => Str::random(10),
             'is_admin'=> true,
         ]);
