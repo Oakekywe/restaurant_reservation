@@ -10,6 +10,7 @@ use App\Models\Table;
 use Carbon\Carbon;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ReservationController extends Controller
 {
@@ -55,8 +56,18 @@ class ReservationController extends Controller
                 return back()->with('warning', 'This table is reserved for this date. Choose another one.');
             }
         }
-
-        Reservation::create($req->validated());
+        //add ref num
+        $reference_number = Str::random(10);
+        Reservation::create([
+            "first_name" => $req->first_name,
+            "last_name" => $req->last_name,
+            "email" => $req->email,
+            "phone_number" => $req->phone_number,
+            "res_date" => $req->res_date,
+            "guest_number" => $req->guest_number,
+            "table_id" => $req->table_id,
+            "reference_number"=> $reference_number,
+        ]);
         return redirect()->route('admin.reservations.index')->with('success', 'New reservation Added!');
     }
 

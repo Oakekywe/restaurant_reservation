@@ -16,6 +16,7 @@ class Reservation extends Model
         "res_date",
         "guest_number",
         "table_id",
+        "reference_number"
     ];
     protected $dates = [
         "res_date"

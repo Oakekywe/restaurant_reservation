@@ -10,6 +10,7 @@ use App\Rules\DateBetween;
 use App\Rules\TimeBetween;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ReservationController extends Controller
 {
@@ -64,10 +65,13 @@ class ReservationController extends Controller
             'table_id'=> ['required']
         ]);
         $reservation= $req->session()->get('reservation');
+        $reference_number= Str::random(10);
+        
         $reservation->fill($validated);
+        $reservation->reference_number= $reference_number;
         $reservation->save();
         $req->session()->forget('reservation');
 
-        return redirect()->route('thankyou');
+        return redirect()->route('thankyou', $reservation->id);
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 return new class extends Migration
 {
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->dateTime('res_date');
             $table->unsignedBigInteger('table_id');
             $table->integer('guest_number');
+            $table->string('reference_number')->unique();
             $table->timestamps();
         });
     }

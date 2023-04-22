@@ -19,7 +19,7 @@
 
                             <form method="POST" action="{{ route('reservations.store.step.one') }}">
                                 @csrf
-                                <div class="sm:col-span-6">
+                                <div class="sm:col-span-6 mt-2">
                                     <label for="first_name" class="block text-sm font-medium text-gray-700"> First Name
                                     </label>
                                     <div class="mt-1">
@@ -31,7 +31,7 @@
                                         <div class="text-sm text-red-400">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="sm:col-span-6">
+                                <div class="sm:col-span-6 mt-2">
                                     <label for="last_name" class="block text-sm font-medium text-gray-700"> Last Name
                                     </label>
                                     <div class="mt-1">
@@ -43,7 +43,7 @@
                                         <div class="text-sm text-red-400">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="sm:col-span-6">
+                                <div class="sm:col-span-6 mt-2">
                                     <label for="email" class="block text-sm font-medium text-gray-700"> Email </label>
                                     <div class="mt-1">
                                         <input type="email" id="email" name="email"
@@ -54,7 +54,7 @@
                                         <div class="text-sm text-red-400">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="sm:col-span-6">
+                                <div class="sm:col-span-6 mt-2">
                                     <label for="phone_number" class="block text-sm font-medium text-gray-700"> Phone
                                         number
                                     </label>
@@ -67,7 +67,7 @@
                                         <div class="text-sm text-red-400">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="sm:col-span-6">
+                                <div class="sm:col-span-6 mt-2">
                                     <label for="res_date" class="block text-sm font-medium text-gray-700"> Reservation
                                         Date
                                     </label>
@@ -83,7 +83,7 @@
                                         <div class="text-sm text-red-400">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="sm:col-span-6">
+                                <div class="sm:col-span-6 mt-2">
                                     <label for="guest_number" class="block text-sm font-medium text-gray-700"> Guest
                                         Number
                                     </label>
