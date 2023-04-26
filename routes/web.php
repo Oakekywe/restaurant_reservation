@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
+use App\Http\Controllers\Frontend\CheckReservationController;
 use App\Http\Controllers\Frontend\MenuController as FrontendMenuController;
 use App\Http\Controllers\Frontend\ReservationController as FrontendReservationController;
 use App\Http\Controllers\Frontend\WelcomeController;
@@ -34,6 +35,8 @@ Route::post('/reservation/step-one', [FrontendReservationController::class, 'sto
 Route::get('/reservation/step-two', [FrontendReservationController::class, 'stepTwo'])->name('reservations.step.two');
 Route::post('/reservation/step-two', [FrontendReservationController::class, 'storeStepTwo'])->name('reservations.store.step.two');
 Route::get('/thank-you/{id}', [WelcomeController::class, 'thankyou'])->name('thankyou');
+Route::get('/check-reservation', [CheckReservationController::class, 'index'])->name('reservation.check');
+Route::post('/check-reservation', [CheckReservationController::class, 'check'])->name('reservation.check');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

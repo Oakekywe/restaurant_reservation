@@ -24,6 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('table_id');
             $table->integer('guest_number');
             $table->string('reference_number')->unique();
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

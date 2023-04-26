@@ -102,6 +102,7 @@ class ReservationController extends Controller
                 return back()->with('warning', 'This table is reserved for this date. Choose another one.');
             }
         }
+        $reservation->status= $req->status;
         $reservation->update($req->validated());
         return redirect()->route('admin.reservations.index')->with('success', 'Reservation successfully Updated!');
     }

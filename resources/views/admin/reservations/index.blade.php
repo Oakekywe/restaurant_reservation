@@ -38,6 +38,9 @@
                                 Guest Number
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Status
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Action
                             </th>
                         </tr>
@@ -67,6 +70,9 @@
                             </td>
                             <td class="px-6 py-4">
                                 {{$reservation->guest_number}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{$reservation->status}}
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex space-x-2">
