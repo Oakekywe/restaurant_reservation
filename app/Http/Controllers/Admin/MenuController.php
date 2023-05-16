@@ -30,8 +30,8 @@ class MenuController extends Controller
     public function create()
     {
         $categories= Category::all();
-        $menus= Menu::all();
-        return view('admin.menus.create', compact('categories','menus'));
+        // $menus= Menu::all();
+        return view('admin.menus.create', compact('categories'));
     }
 
     /**
